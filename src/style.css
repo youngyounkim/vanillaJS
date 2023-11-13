@@ -1,3 +1,53 @@
+.list_wrap {
+    width: 100%;
+    height: 400px;
+    max-width: 360px;
+    background-color: rgb(18, 18, 18);
+    overflow: scroll;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .list_item {
-    color: red;
+    list-style: none;
+    padding: 8px 16px;
+    min-height: 32px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.list_item_title {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #fff;
+    margin-top: 4px;
+}
+
+.list_item:hover {
+    background-color: #444950;
+}
+
+.click_effect {
+    position: absolute;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: animate 0.5s linear forwards;
+}
+@keyframes animate {
+    0% {
+        width: 0px;
+        height: 0px;
+        opacity: 0.5;
+    }
+    100% {
+        width: 1000px;
+        height: 1000px;
+        opacity: 0;
+    }
 }
