@@ -1,5 +1,6 @@
 import virtualList from './virtualList';
 import tabList from './tabList';
+import accordion from './accordion';
 
 import './style.css';
 
@@ -9,7 +10,7 @@ function home() {
 
     element.appendChild(virtualList(50));
     element.appendChild(tabList(tabListArr));
-
+    element.appendChild(accordion(tabListArr));
     return element;
 }
 
