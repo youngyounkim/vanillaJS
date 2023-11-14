@@ -1,18 +1,25 @@
 import clickEffect from './util/clickEffect';
 
 function tabList(arr) {
+    const header = document.createElement('header');
+    header.className = 'tab_header';
+
     const element = document.createElement('ul');
     element.className = 'tab_wrap';
-    let selectId;
+
+    let selectId = arr[0].title;
+
+    const content = document.createElement('p');
+    content.className = 'tab_item_content';
+    const selectItem = arr.find((el) => el.title === selectId);
+    content.textContent = selectItem.title;
 
     arr.forEach((el) => {
         const listItem = document.createElement('li');
 
         listItem.className = 'tab_item';
 
-        const itemText = document.createElement('a');
-        itemText.className = 'tab_item_title';
-        itemText.textContent = el.title;
+        listItem.textContent = el.title;
 
         listItem.onclick = () => {
             const target = document.getElementsByClassName('selected')[0];
@@ -21,15 +28,22 @@ function tabList(arr) {
             }
             selectId = el.title;
             listItem.className += ' selected';
+
+            const selectItem = arr.find((el) => el.title === selectId);
+
+            if (selectItem) {
+                content.textContent = selectItem.title;
+            }
         };
 
         clickEffect(listItem);
-        listItem.appendChild(itemText);
 
         element.appendChild(listItem);
     });
 
-    return element;
+    header.appendChild(element);
+    header.appendChild(content);
+    return header;
 }
 
 export default tabList;
