@@ -8,9 +8,11 @@ function accordion(arr) {
 
         const itemTitleWrap = document.createElement('span');
         itemTitleWrap.className = 'accordion_item_title_wrap';
+
         const itemTitle = document.createElement('h3');
         itemTitle.className = 'accordion_item_title';
         itemTitle.textContent = el.title;
+
         const arrowIcon = document.createElement('div');
         arrowIcon.className = 'arrow';
         itemTitleWrap.appendChild(itemTitle);
@@ -18,17 +20,25 @@ function accordion(arr) {
 
         item.appendChild(itemTitleWrap);
         const itemContent = document.createElement('p');
-        itemContent.className = '';
-        itemContent.style.display = 'none';
+        itemContent.className = 'accordion_item_content';
+        itemContent.textContent = el.content;
+        item.appendChild(itemContent);
 
-        if (el.disabled === 'true') {
+        let isClick = false;
+        if (el.disabled === true) {
             item.className += ' disabled';
         } else {
             item.addEventListener('click', (e) => {
-                if (itemContent.style.display === 'none') {
-                    itemContent.style.display = 'block';
+                if (isClick) {
+                    item.style.height = 24 + 'px';
+                    item.classList.remove('accordion_item_select');
+                    isClick = !isClick;
+                    arrowIcon.style.transform = 'rotate(45deg)';
                 } else {
-                    itemContent.style.display = 'none';
+                    item.className += ' accordion_item_select';
+                    item.style.height = 40 + itemContent.offsetHeight + 'px';
+                    isClick = !isClick;
+                    arrowIcon.style.transform = 'rotate(225deg)';
                 }
             });
         }
