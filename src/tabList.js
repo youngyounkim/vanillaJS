@@ -1,4 +1,5 @@
 import clickEffect from './util/clickEffect';
+import moveHighlight from './util/moveHighlight';
 
 function tabList(arr) {
     const header = document.createElement('header');
@@ -14,7 +15,10 @@ function tabList(arr) {
     const selectItem = arr.find((el) => el.title === selectId);
     content.textContent = selectItem.title;
 
-    arr.forEach((el) => {
+    const border = document.createElement('div');
+    border.className = 'highlight';
+
+    arr.forEach((el, idx) => {
         const listItem = document.createElement('li');
 
         listItem.className = 'tab_item';
@@ -28,7 +32,7 @@ function tabList(arr) {
             }
             selectId = el.title;
             listItem.className += ' selected';
-
+            moveHighlight(listItem, border);
             const selectItem = arr.find((el) => el.title === selectId);
 
             if (selectItem) {
@@ -37,10 +41,13 @@ function tabList(arr) {
         };
 
         clickEffect(listItem);
-
+        if (idx === 0) {
+            listItem.className += ' selected';
+            moveHighlight(listItem, border);
+        }
         element.appendChild(listItem);
+        element.appendChild(border);
     });
-
     header.appendChild(element);
     header.appendChild(content);
     return header;

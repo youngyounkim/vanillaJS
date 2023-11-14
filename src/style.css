@@ -60,8 +60,7 @@
 .tab_wrap {
     display: flex;
     padding: 0;
-    align-items: center;
-    justify-content: flex-start;
+    position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -86,4 +85,15 @@
 
 .selected {
     color: rgb(144, 202, 249);
+}
+
+.highlight {
+    z-index: 99;
+    width: 92px;
+    height: 1px;
+    top: 48px;
+
+    position: absolute;
+    background-color: rgb(144, 202, 249);
+    transition: 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 }
