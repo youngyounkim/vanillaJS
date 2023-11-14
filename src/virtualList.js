@@ -1,4 +1,4 @@
-import clickEffect from './clickEffect';
+import clickEffect from './util/clickEffect';
 
 function virtualList(itemCount) {
     const element = document.createElement('ul');
