@@ -1,8 +1,8 @@
 function clickEffect(el) {
     el.addEventListener('click', function (event) {
         event.stopPropagation();
-        let x = event.clientX - event.target.offsetLeft;
-        let y = event.clientY - event.target.offsetTop;
+        let x = event.clientX - el.getBoundingClientRect().left;
+        let y = event.clientY - el.getBoundingClientRect().top;
 
         let rippleElement = document.createElement('span');
         rippleElement.className = 'click_effect';
