@@ -26,9 +26,10 @@ function accordion(arr) {
 
         let isClick = false;
         if (el.disabled === true) {
+            // 아코디언이 선택 불가 상태인 경우 이벤트 미지정
             item.className += ' disabled';
         } else {
-            item.addEventListener('click', (e) => {
+            item.addEventListener('click', () => {
                 if (isClick) {
                     item.style.height = 24 + 'px';
                     item.classList.remove('accordion_item_select');
